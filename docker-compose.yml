@@ -1,0 +1,22 @@
+version: '3'
+
+networks:
+    Laravel:
+
+services:
+
+    jenkins:
+       build:
+         context: .
+         dockerfile: Dockerfile
+       container_name: jenkins_java
+       ports:
+         - "8081:8080"
+       volumes:
+         - ."$HOME":/home
+         - .jenkins-data:/var/jenkins_home
+         - /var/run/docker.sock:/var/run/docker.sock
+       networks:
+         - Laravel
+   
+        
